@@ -13,7 +13,7 @@
 // });
 import 'dotenv/config';             // ✅ REQUIRED
 import { defineConfig } from "prisma/config";
-import { PrismaNeon } from "@prisma/adapter-neon";
+// import { PrismaNeon } from "@prisma/adapter-neon";
 
 if (!process.env.DATABASE_URL) {
   throw new Error("DATABASE_URL is missing");
@@ -31,7 +31,7 @@ export default defineConfig({
     path: "prisma/migrations",
   },
 
-  client: {
-    adapter: new PrismaNeon(process.env.DATABASE_URL),
-  },
+  // client: {
+  //   adapter: new PrismaNeon(process.env.DATABASE_URL),
+  // },
 });

@@ -25,12 +25,14 @@
 import 'dotenv/config';
 import { PrismaClient } from '@prisma/client';
 import { PrismaNeon } from '@prisma/adapter-neon';
-import { neonConfig } from '@neondatabase/serverless';
-import ws from 'ws';
+// import { neonConfig } from '@neondatabase/serverless';
+// import ws from 'ws';
 
-neonConfig.webSocketConstructor = ws;
+// neonConfig.webSocketConstructor = ws;
 
-const adapter = new PrismaNeon(process.env.DATABASE_URL);
+const connectionString = process.env.DATABASE_URL;  // Pooled URL for runtime
+
+const adapter = new PrismaNeon({ connectionString });
 
 const prisma = globalThis.prisma || new PrismaClient({ adapter });
 
