@@ -60,8 +60,9 @@ const syncWorkspaceCreation = inngest.createFunction(
   { event: "clerk/organization.created" },
   async ({ event }) => {
     const { data } = event;
+    
     await prisma.workspace.create({
-      date: {
+      data: {
         id: data.id,
         name: data.name,
         slug: data.slug,
@@ -69,7 +70,6 @@ const syncWorkspaceCreation = inngest.createFunction(
         imageUrl: data.image_url,
       },
     });
-
     //ADD creator as ADMIN member
     await prisma.workspaceMember.create({
       data: {
